@@ -164,6 +164,7 @@ Visual analysis of the consumption time series after detrending indicates the pr
 - The maximum number of epochs for Neural forecast methods is determined in 200.
 - All the Neural forecast methods use the MAE as loss function.
 - The forecasts for each method are plotted below:
+
 Naive: Uses the last observed value as the forecast for the next point.
 
 <img src="Gráficos/previsao_naive.png"> 
