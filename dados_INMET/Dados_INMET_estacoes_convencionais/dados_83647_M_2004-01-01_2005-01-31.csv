@@ -1,0 +1,25 @@
+Nome: SANTA TERESA
+Codigo Estacao: 83647
+Latitude: -19.936468
+Longitude: -40.592526
+Altitude: 644.5
+Situacao: Desativada
+Data Inicial: 2004-01-01
+Data Final: 2005-01-31
+Periodicidade da Medicao: Mensal
+
+Data Medicao;TEMPERATURA MEDIA COMPENSADA, MENSAL(°C);
+2004-01-31;22;
+2004-02-29;22,4;
+2004-03-31;21,7;
+2004-04-30;21,1;
+2004-05-31;19,3;
+2004-06-30;17,2;
+2004-07-31;16,6;
+2004-08-31;17,6;
+2004-09-30;18,7;
+2004-10-31;null;
+2004-11-30;21,3;
+2004-12-31;22,2;
+2005-01-31;23,1;
+

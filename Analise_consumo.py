@@ -305,19 +305,13 @@ serie_comp_irregular = serie_detrendida - serie_recons_fourier
 df_analise_consumo['serie_comp_irregular'] = serie_detrendida - serie_recons_fourier
 
 #### PREVISÕES DA SÉRIE TEMPORAL DE CONSUMO
-serie_previsao = pd.DataFrame({
-    'unique_id': 'consumo',
-    'ds': df_analise_consumo.index,
-    'y': serie_comp_irregular,
-})
-
 serie_previsao_comp_irregular = pd.DataFrame({
     'unique_id': 'consumo',
     'ds': df_analise_consumo.index,
     'y': serie_comp_irregular
 })
 
-serie_previsao_consumo = pd.DataFrame({
+serie_previsao= pd.DataFrame({
     'unique_id': 'consumo',
     'ds': df_analise_consumo.index,
     'y': total_consumo
@@ -395,6 +389,7 @@ cv_metricas_medias = (resultados_cv
 
 cv_metricas_medias = cv_metricas_medias[cv_metricas_medias.loc['mse'].sort_values().index]
 cv_metricas_medias = cv_metricas_medias.drop(columns=['AutoETS'],axis=1)
+print(cv_metricas_medias)
 melhores_modelos = cv_metricas_medias.columns[0:4]
 
 #Faço as previsões futuras
@@ -520,7 +515,6 @@ plt.legend()
 plt.show()
 
 ## Plot dos dados de treino, validação e previsões dos modelos estatísticos e neurais
-
 plt.figure(figsize=(12,6))
 plt.plot(serie_treino['time_col'], serie_treino['target_col'], label='Treino', color='gray')
 plt.plot(previsoes_combinadas['ds'], previsoes_combinadas['y'], label='Validação', color='k', linewidth=2)
@@ -529,11 +523,12 @@ for i, modelo in enumerate(melhores_modelos):
     plt.plot(previsoes_combinadas['ds'], previsoes_combinadas[modelo], color=cores[i], linewidth=1.5, linestyle='--', label=modelo)
 for i, modelo in enumerate(melhores_modelos):
     plt.plot(previsoes_future['ds'], previsoes_future[modelo], color=cores[i], linestyle='--')
-plt.xlim(left=datetime(2024,1,1), right=datetime(2026,9,1))
+plt.xlim(left=datetime(2022,1,1), right=datetime(2026,9,1))
+plt.ylim(bottom=40000000, top=51000000)
 plt.legend()
 plt.title('Previsões de consumo de energia - Modelos Estatísticos e Neurais')
 plt.xlabel('Data')
-plt.ylabel('Consumo detrendido (LOESS)')
+plt.ylabel('Consumo [MWh]')
 plt.grid()
 plt.tight_layout()
 plt.show()

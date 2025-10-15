@@ -1,0 +1,15 @@
+Nome: BANGU
+Codigo Estacao: 83790
+Latitude: -22.87
+Longitude: -43.45
+Altitude: 40
+Situacao: Desativada
+Data Inicial: 2004-01-01
+Data Final: 2004-03-27
+Periodicidade da Medicao: Mensal
+
+Data Medicao;TEMPERATURA MEDIA COMPENSADA, MENSAL(°C);
+2004-01-31;null;
+2004-02-29;null;
+2004-03-31;null;
+

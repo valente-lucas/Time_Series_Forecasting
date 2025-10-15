@@ -1,0 +1,18 @@
+Nome: CACHOEIRINHA
+Codigo Estacao: B808
+Latitude: -29.95138888
+Longitude: -51.12416666
+Altitude: 72
+Situacao: Operante
+Data Inicial: 2025-02-17
+Data Final: 2025-07-31
+Periodicidade da Medicao: Mensal
+
+Data Medicao;TEMPERATURA MEDIA, MENSAL (AUT)(°C);
+2025-02-28;null;
+2025-03-31;null;
+2025-04-30;null;
+2025-05-31;null;
+2025-06-30;null;
+2025-07-31;null;
+

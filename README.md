@@ -1,6 +1,6 @@
 # Times Series Forecasting 
 
-<img src="Gráficos/logo_projeto.jpeg" width="800px" height="40%">
+<img src="Gráficos/logo_projeto.jpg" width="800px" height="40%">
 
 # 1. Project Description
 
@@ -55,8 +55,7 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 - The Energy Research Company of the Brazilian government's Ministry of Mines and Energy provides historical data, from 2004 onward, on monthly electricity consumption and the number of consumers at the national, regional, and subsystem levels, segmented by consumer type (captive or free) and by class (residential, industrial, commercial, and others).
 - Historical electricity consumption series are available in .xlsx format, as exemplified in Figure X below.
 
- <img src="Gráficos/base_EPE.png">
-
+ <img src="Gráficos/base_EPE.jpg">
 
 - The .xlsx file consists of separate tabs for consumption and the number of captive and free consumers, by region and class, or by federal unit.
 - The data provided is available monthly.
@@ -65,7 +64,7 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 - Consumption data is available in units of MWh.
 - Data separated by federative unit allows us to analyze the impact of adopting daylight saving time, since this public policy was implemented by federative unit.
 
-<img src="Gráficos/base_HV.png">
+<img src="Gráficos/Base_HV.png">
 
 - Historical data on the adoption dates of daylight saving time and the states in which it was adopted are available online.
 - The National Institute of Meteorology provides monthly historical temperature data measured at each of the meteorological stations throughout the country, allowing for the calculation of an average temperature per federal unit and the historical series of these temperature data.
@@ -89,43 +88,45 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 
 **Some particular features of the base - Daylight saving time**
 
-<img src="Gráficos/Consumo_TOTAL_CATIVO_LIVRE.png">
-
 3. **Data Preparation:**
 
 **Data Import and Preprocessing**
 Relevant information is extracted from the databases and dataframes are filled with the information that will be used in the analyses.
 
-   - Import historical consumption data.
-   - Import daylight saving time serie. 
-   - Import temperature data
-   - Handling missing values.
-   - Data preprocessing.
-   - Fitting data to pandas Dataframe formats - wide, compact and expanded.
+- Import historical consumption data.
+- Import daylight saving time serie. 
+- Import temperature data
+- Handling missing values.
+- Data preprocessing.
+- Fitting data to pandas Dataframe formats - wide, compact and expanded.
 
+<img src="Gráficos/Consumo_TOTAL_CATIVO_LIVRE.png">
 
 4. **Modeling:**
 
 1. **Detrending**
 Visual analysis of the charts reveals a clear trend component. We'll use different methods to extract this component and measure these methods to determine the best detrending result.
 
-    - The total consumption time series is used in this analysis.
-    - Detrending is performed using the moving average and LOWESS (locally weight estimated scatterplot smoothing) methods.
-    - The extracted trend components are shown in Figures XX and XX1.
-    - The calculated metrics are shown in YY.
+- The total consumption time series is used in this analysis.
+- Detrending is performed using the moving average and LOWESS (locally weight estimated scatterplot smoothing) methods.
+- The extracted trend components are shown in Figures XX and XX1.
+- The calculated metrics are shown in YY.
 
 <img src="Gráficos/METRICAS_DETRENDING.png">
 
-    - The metrics indicate that the moving average decomposition method with a multiplicative model is the best model; the LOWESS model also has good parameters.
-    - Analysis of the time series detrended by the different methods shows that the multiplicative model flattens the curve too much, which is undesirable.
-    - I perform a logarithmic transform on the raw time series and a decomposition with an additive model, which is similar to applying the multiplicative model but can reveal whether the behavior flattens the curve too much.
-    - The logarithmic model combined with the additive decomposition confirms the undesirable behavior of the multiplicative model.
-    - Decomposition using the LOESS method is chosen as the most appropriate. 
+- The metrics indicate that the moving average decomposition method with a multiplicative model is the best model; the LOWESS model also has good parameters.
+- Analysis of the time series detrended by the different methods shows that the multiplicative model flattens the curve too much, which is undesirable.
+
+<img src="Gráficos/Series_detrendidas_separadas.png">
+
+<img src="Gráficos/Series_detrendidas_juntas.png">
+
+- I perform a logarithmic transform on the raw time series and a decomposition with an additive model, which is similar to applying the multiplicative model but can reveal whether the behavior flattens the curve too much.
+- The logarithmic model combined with the additive decomposition confirms the undesirable behavior of the multiplicative model.
+- Decomposition using the LOESS method is chosen as the most appropriate.
 
 <img src="Gráficos/Tendencias_extraidas.png">
 
-<img src="Gráficos/Series_detrendidas_separadas.png">
-<img src="Gráficos/Series_detrendidas_juntas.png">
 
 2. **Deseasonality**
 Visual analysis of the consumption time series after detrending indicates the presence of trend and cyclical components.
@@ -158,14 +159,50 @@ Visual analysis of the consumption time series after detrending indicates the pr
     
 3. **Forecast**
 
-- The time series forecast
+- In this part of the project, we will forecast the time series.
+- The forecast horizon is determined in 12 months.
+- The maximum number of epochs for Neural forecast methods is determined in 200.
+- All the Neural forecast methods use the MAE as loss function.
+- The forecasts for each method are plotted below:
+Naive: Uses the last observed value as the forecast for the next point.
+
+<img src="Gráficos/previsao_naive.png"> 
+
+SeasonalNaive: Forecast equal to the observed value at the same position as the last station.
+
+<img src="Gráficos/previsao_seasonalnaive.png"> 
+
+ETS: Exponential smoothing models that automatically adjust for level, trend, and seasonality.
+
+<img src="Gráficos/previsao_AutoETS.png"> 
+
+ARIMA: Integrated autoregressive moving average model that adjusts for temporal dependence, trend, and seasonal patterns.
+
+<img src="Gráficos/previsao_AutoARIMA.png"> 
+
+Theta: Combines projections of smoothed series with different "angles" to capture trend and level.
+
+<img src="Gráficos/previsao_Theta.png"> 
+
+NBEATS: Deep neural network that learns trend and seasonality patterns directly from the data.
+
+<img src="Gráficos/previsao_NBEATS.png">
+
+NHITS: Evolution of N-BEATS with a hierarchical architecture, learning short- and long-term dependencies.
+
+<img src="Gráficos/previsao_NHITS.png"> 
+
+PatchTST: Transformer-based model that divides the series into "patches" and learns complex temporal patterns.
+
+<img src="Gráficos/previsao_PatchTST.png">
+
 
 4. **Evalution:**
 - First of all, **data cleaning** was performed to turn the raw data suitable for data exploration and modeling. Tasks performed in this step:
 - Obtain a sorted dataframe, providing a chronological order for the loan data.
 
 
-# 4. Obtain the Data
+# 4. Data origin
 
 - The data used are provided by the energy research company, linked to the Brazilian government's Ministry of Mines and Energy. The data are released monthly and separated by consumer type, state, and class. The data are available electronically and can be obtained at (https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/consumo-de-energia-eletrica).
 - Average temperature data per meteorological station are provided by the National Institute of Meteorology (INMET) and are available at the link (https://portal.inmet.gov.br/).

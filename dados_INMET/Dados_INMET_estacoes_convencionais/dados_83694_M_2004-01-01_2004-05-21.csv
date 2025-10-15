@@ -1,0 +1,17 @@
+Nome: MURIAE
+Codigo Estacao: 83694
+Latitude: -21.13
+Longitude: -42.33
+Altitude: 270
+Situacao: Desativada
+Data Inicial: 2004-01-01
+Data Final: 2004-05-21
+Periodicidade da Medicao: Mensal
+
+Data Medicao;TEMPERATURA MEDIA COMPENSADA, MENSAL(°C);
+2004-01-31;null;
+2004-02-29;null;
+2004-03-31;null;
+2004-04-30;null;
+2004-05-31;null;
+

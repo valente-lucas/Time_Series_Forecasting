@@ -1,0 +1,37 @@
+Nome: CAXAMBU
+Codigo Estacao: 83686
+Latitude: -21.989629
+Longitude: -44.938583
+Altitude: 958
+Situacao: Desativada
+Data Inicial: 2004-01-01
+Data Final: 2006-01-31
+Periodicidade da Medicao: Mensal
+
+Data Medicao;TEMPERATURA MEDIA COMPENSADA, MENSAL(°C);
+2004-01-31;null;
+2004-02-29;null;
+2004-03-31;null;
+2004-04-30;null;
+2004-05-31;null;
+2004-06-30;null;
+2004-07-31;null;
+2004-08-31;null;
+2004-09-30;null;
+2004-10-31;null;
+2004-11-30;null;
+2004-12-31;null;
+2005-01-31;null;
+2005-02-28;null;
+2005-03-31;null;
+2005-04-30;null;
+2005-05-31;null;
+2005-06-30;null;
+2005-07-31;null;
+2005-08-31;null;
+2005-09-30;null;
+2005-10-31;null;
+2005-11-30;null;
+2005-12-31;null;
+2006-01-31;null;
+

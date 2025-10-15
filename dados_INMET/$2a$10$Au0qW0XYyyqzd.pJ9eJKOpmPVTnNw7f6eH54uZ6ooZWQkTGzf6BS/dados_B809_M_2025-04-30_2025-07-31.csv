@@ -1,0 +1,16 @@
+Nome: SAPUCAIA DO SUL
+Codigo Estacao: B809
+Latitude: -29.81388888
+Longitude: -51.15666666
+Altitude: 23
+Situacao: Operante
+Data Inicial: 2025-04-30
+Data Final: 2025-07-31
+Periodicidade da Medicao: Mensal
+
+Data Medicao;TEMPERATURA MEDIA, MENSAL (AUT)(°C);
+2025-04-30;null;
+2025-05-31;null;
+2025-06-30;null;
+2025-07-31;null;
+

@@ -1,0 +1,26 @@
+Nome: FLORESTA DO ARAGUAIA
+Codigo Estacao: A208
+Latitude: -7.56176
+Longitude: -49.69884
+Altitude: 188.09
+Situacao: Desativada
+Data Inicial: 2008-04-10
+Data Final: 2009-05-31
+Periodicidade da Medicao: Mensal
+
+Data Medicao;TEMPERATURA MEDIA, MENSAL (AUT)(°C);
+2008-04-30;25,6;
+2008-05-31;25,3;
+2008-06-30;25,4;
+2008-07-31;null;
+2008-08-31;28,3;
+2008-09-30;28,2;
+2008-10-31;27,4;
+2008-11-30;26,1;
+2008-12-31;25,5;
+2009-01-31;26,1;
+2009-02-28;null;
+2009-03-31;null;
+2009-04-30;null;
+2009-05-31;null;
+
