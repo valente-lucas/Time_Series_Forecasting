@@ -308,7 +308,7 @@ df_analise_consumo['serie_comp_irregular'] = serie_detrendida - serie_recons_fou
 serie_previsao = pd.DataFrame({
     'unique_id': 'consumo',
     'ds': df_analise_consumo.index,
-    'y': serie_comp_irregular,#'y': serie_detrendida, #'y': total_consumo,
+    'y': serie_comp_irregular,
 })
 
 serie_previsao_comp_irregular = pd.DataFrame({
@@ -328,6 +328,7 @@ serie_previsao_detrendida = pd.DataFrame({
     'ds': df_analise_consumo.index,
     'y': serie_detrendida
 })
+
 ## Divisão em treino e validação (V ultimos para validação)
 h=12 
 serie_treino = serie_previsao.iloc[:-h]
@@ -394,7 +395,7 @@ cv_metricas_medias = (resultados_cv
 
 cv_metricas_medias = cv_metricas_medias[cv_metricas_medias.loc['mse'].sort_values().index]
 cv_metricas_medias = cv_metricas_medias.drop(columns=['AutoETS'],axis=1)
-melhores_modelos = cv_metricas_medias.columns[0:3]
+melhores_modelos = cv_metricas_medias.columns[0:4]
 
 #Faço as previsões futuras
 previsoes_stats_future= sf.predict(h=12)
@@ -523,12 +524,12 @@ plt.show()
 plt.figure(figsize=(12,6))
 plt.plot(serie_treino['time_col'], serie_treino['target_col'], label='Treino', color='gray')
 plt.plot(previsoes_combinadas['ds'], previsoes_combinadas['y'], label='Validação', color='k', linewidth=2)
-cores = ['r', 'b', 'g']
+cores = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:pinke', 'tab:olive', 'tab:brown']
 for i, modelo in enumerate(melhores_modelos):
-    plt.plot(previsoes_combinadas['ds'], previsoes_combinadas[modelo], color=cores[i], linewidth=0.5, linestyle='--', label=modelo)
+    plt.plot(previsoes_combinadas['ds'], previsoes_combinadas[modelo], color=cores[i], linewidth=1.5, linestyle='--', label=modelo)
 for i, modelo in enumerate(melhores_modelos):
-    plt.plot(previsoes_future['ds'], previsoes_future[modelo],label=modelo, color=cores[i], linestyle='--')
-plt.xlim(left=datetime(2020,1,1), right=datetime(2027,1,1))
+    plt.plot(previsoes_future['ds'], previsoes_future[modelo], color=cores[i], linestyle='--')
+plt.xlim(left=datetime(2024,1,1), right=datetime(2026,9,1))
 plt.legend()
 plt.title('Previsões de consumo de energia - Modelos Estatísticos e Neurais')
 plt.xlabel('Data')
