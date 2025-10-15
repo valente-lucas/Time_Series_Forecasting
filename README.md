@@ -55,7 +55,7 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 - The Energy Research Company of the Brazilian government's Ministry of Mines and Energy provides historical data, from 2004 onward, on monthly electricity consumption and the number of consumers at the national, regional, and subsystem levels, segmented by consumer type (captive or free) and by class (residential, industrial, commercial, and others).
 - Historical electricity consumption series are available in .xlsx format, as exemplified in Figure X below.
 
- <img src="Gráficos/base_EPE.jpg">
+ <img src="Gráficos/Base_EPE.jpg">
 
 - The .xlsx file consists of separate tabs for consumption and the number of captive and free consumers, by region and class, or by federal unit.
 - The data provided is available monthly.
@@ -199,9 +199,32 @@ PatchTST: Transformer-based model that divides the series into "patches" and lea
 
 
 4. **Evalution:**
-- First of all, **data cleaning** was performed to turn the raw data suitable for data exploration and modeling. Tasks performed in this step:
-- Obtain a sorted dataframe, providing a chronological order for the loan data.
+- The metrics used to evaluate the prediction errors were:
 
+**MAE** (Mean Absolute Error): Measures the average absolute error between predicted and observed values, indicating the average deviation without considering the direction.
+
+**MSE** (Mean Squared Error): Calculates the mean of squared errors, penalizing larger discrepancies more heavily.
+
+**MAPE** (Mean Absolute Percentage Error): Expresses the average absolute error as a percentage of the actual values, allowing for relative interpretation.
+
+**sMAPE** (Symmetric Mean Absolute Percentage Error): A symmetric version of MAPE, balancing the relative error between predicted and observed values.
+
+**MASE** (Mean Absolute Scaled Error): Compares the model's error to a simple baseline model, enabling relative evaluation across series of different scales.
+
+- The metrics are first calculated for each method when predicting the validation data.
+- Subsequently, cross-validation is performed with the database to generate the forecast at different points in the time series.
+- Cross-validation generates the forecasts for each method in six windows of the time series.
+- Evaluation metrics are calculated in each of the cross-validation windows, and finally, the simple average of the metrics for each is generated.
+- The average values ​​of the metrics calculated in the cross-validation are used to define the four methods that best suit the data forecast.
+- The average values ​​of the metrics are shown in Figure XX.
+
+<img src="Gráficos/METRICAS_FORECAST.png">
+
+- The four methods that perform best in the metrics are used to generate the final forecasts, which are shown in the figure below.
+
+<img src="Gráficos/previsao_consumo_melhores_metodos.png">
+
+<img src="Gráficos/previsao_consumo_melhores_metodos_2.png">
 
 # 4. Data origin
 
