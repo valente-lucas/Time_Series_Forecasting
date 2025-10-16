@@ -149,6 +149,9 @@ Visual analysis of the consumption time series after detrending indicates the pr
 
 
 - This plot indicates an optimal value of 53 harmonics in the Fourier series, explaining a total of 90% of the variance observed in the detrended series. - The seasonality and cyclicality components are reconstructed with the first 53 harmonics.
+
+<img src="Gráficos/reconstrucao_53harmonicos.png">
+ 
 - The frequency magnitude spectrum shows the low frequency of 60-period components to justify a possible 60-month cyclicality.
 
 <img src="Gráficos/Espectro_magnitude_fourier.png">
