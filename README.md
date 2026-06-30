@@ -1,25 +1,25 @@
 # Times Series Forecasting 
 
-<img src="Gráficos/logo_projeto.jpg" width="800px" height="40%">
+<img src="Electricity_consumption/graficos/projeto-logo.jpg" width="800px" height="40%">
 
 # 1. Project Description
 
-**Eletrical comsuption forecasting**
-- In this project, I will **forecast eletricity comsuption in Brazil**. 
-- The forecast will be performed using five **statistical forecasting models** and three **machine learning models**.
+**Electrical comsuption forecasting**
+- In this project, I will **forecast electricity consumption in Brazil**. 
+- The forecast will be performed using **statistical forecasting models** and **machine learning models**.
 - The **trend**, **seasonality**, **cyclicality** and the **irregular component** of the time series are extracted and analyzed using different methods.
 - Forecasting models are **trained** with data from the series and **validated** with the most recent data from the historical series.
 - Different **error metrics** are used to measure the quality of forecasting methods
 - **Cross-validation** is performed to increase confidence in the metrics used.
 - The best-ranked methods are used to forecast consumption values ​​for the next year.
 
-Future project features:
-
 **Daylight Saving Time Analysis**
-- Add the historical data on the adoption of the **daylight saving time public policy**.
-- Analyze the influence this public policy had on electricity consumption in the country.
-- Generate a result to **support the decision** on whether or not to reinstate daylight saving time.
-- **Calculate the amount of energy savings or additional expenditure** resulting from the adoption of the policy.
+- Include historical data on the adoption of the **daylight saving time public policy**.
+- Analyze the **impact of discontinuing** this policy on the country's electricity consumption.
+- Generate findings to **support the decision** on whether or not to reinstate daylight saving time.
+- **Calculate the energy savings or additional costs** resulting from the policy's adoption.
+
+Future project features:
 
 **Temperature Analysis**
 - Add the **historical average temperature series** for each federative unit in the country.
@@ -47,15 +47,13 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 
 1. **Problem understanding :**
 
-- The problem to be solved with this project is to predict electricity consumption in Brazil based on historical data.
-- In the future, an analysis of the influence of daylight saving time and temperature on the consumption time series will be added to ultimately support decisions about whether or not to adopt a public daylight saving time policy.
-
+- The problem to be solved with this project is to predict electricity consumption in Brazil based on historical data and analyze the influence of the discontinuity of the daylight saving time policy in the electricity consumption.
 
 2. **Data Understanding:**
 - The Energy Research Company of the Brazilian government's Ministry of Mines and Energy provides historical data, from 2004 onward, on monthly electricity consumption and the number of consumers at the national, regional, and subsystem levels, segmented by consumer type (captive or free) and by class (residential, industrial, commercial, and others).
 - Historical electricity consumption series are available in .xlsx format, as exemplified in Figure X below.
 
- <img src="Gráficos/Base_EPE.jpg">
+ <img src="Electricity_consumption/graficos/Base_EPE.jpg">
 
 - The .xlsx file consists of separate tabs for consumption and the number of captive and free consumers, by region and class, or by federal unit.
 - The data provided is available monthly.
@@ -64,17 +62,10 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 - Consumption data is available in units of MWh.
 - Data separated by federative unit allows us to analyze the impact of adopting daylight saving time, since this public policy was implemented by federative unit.
 
-<img src="Gráficos/Base_HV.png">
+<img src="Electricity_consumption/graficos/Base_HV.png">
 
 - Historical data on the adoption dates of daylight saving time and the states in which it was adopted are available online.
-- The National Institute of Meteorology provides monthly historical temperature data measured at each of the meteorological stations throughout the country, allowing for the calculation of an average temperature per federal unit and the historical series of these temperature data.
-- From the data made available by INMET, data from operating conventional meteorological stations were used, and in the period covered by the time series of electricity consumption, from January 2004 to the present.
-- The data are made available in a zipped file in which there is a .csv file for the historical series of each station, with the identification of each station, the geographic location, the start and end date of the historical series and the values ​​of the average monthly temperature measured.
--The file in figure XX shows an example of the .csv files made available by each weather station.
-- After obtaining the temperature for each station, a weighted average is calculated by region covered by each station to finally generate an average temperature value for each federative unit of the country.
-- These files contain NaN values ​​for temperatures; periods without available data will be evaluated to determine the best method for dealing with missing values.
 
-<img src="Gráficos/Base_TEMP.png">
 
 **Some particular features of the base - Electricity Consumption**
 - Consumption related to captive consumers is predominantly residential (~70%).
@@ -84,9 +75,10 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 - The total consumption series (captive + free) therefore has a positive trend component and a seasonal component.
 - Captive consumption still accounts for the majority of electricity consumption in the country, but free consumption is likely to dominate in the coming years.
 
-**Some particular features of the base - Temperature**
-
 **Some particular features of the base - Daylight saving time**
+- Daylight saving time came into effect in Brazil between the months of **October to February**.
+- The **Southern, Southeastern, and Central-West** states adopted the policy.
+- The policy was **discontinued in 2019**.
 
 3. **Data Preparation:**
 
@@ -100,7 +92,7 @@ Relevant information is extracted from the databases and dataframes are filled w
 - Data preprocessing.
 - Fitting data to pandas Dataframe formats - wide, compact and expanded.
 
-<img src="Gráficos/Consumo_TOTAL_CATIVO_LIVRE.png">
+<img src="Electricity_consumption/graficos/Consumo_Cativo_Livre_Total.png">
 
 4. **Modeling:**
 
@@ -112,20 +104,18 @@ Visual analysis of the charts reveals a clear trend component. We'll use differe
 - The extracted trend components are shown in Figures XX and XX1.
 - The calculated metrics are shown in YY.
 
-<img src="Gráficos/METRICAS_DETRENDING.png">
+<img src="Electricity_consumption/graficos/Serie_Detrendida.png">
 
 - The metrics indicate that the moving average decomposition method with a multiplicative model is the best model; the LOWESS model also has good parameters.
 - Analysis of the time series detrended by the different methods shows that the multiplicative model flattens the curve too much, which is undesirable.
 
-<img src="Gráficos/Series_detrendidas_separadas.png">
-
-<img src="Gráficos/Series_detrendidas_juntas.png">
+<img src="Electricity_consumption/graficos/Comparacao_Series_Detrendidas.png">
 
 - I perform a logarithmic transform on the raw time series and a decomposition with an additive model, which is similar to applying the multiplicative model but can reveal whether the behavior flattens the curve too much.
 - The logarithmic model combined with the additive decomposition confirms the undesirable behavior of the multiplicative model.
 - Decomposition using the LOESS method is chosen as the most appropriate.
 
-<img src="Gráficos/Tendencias_extraidas.png">
+<img src="Electricity_consumption/graficos/Tendencias_Extraidas.png">
 
 
 2. **Deseasonality**
@@ -134,31 +124,30 @@ Visual analysis of the consumption time series after detrending indicates the pr
 - The consumption time series without the trend component is used in this analysis (detrending-loess).
 - Graphs of the autocorrelation and partial autocorrelation of the detrended series data are plotted.
 
-<img src="Gráficos/plot_autocorrelação.png">
+<img src="Electricity_consumption/graficos/ACF_Serie_Detrendida.png">
 
 - The total and partial autocorrelation graphs indicate the presence of seasonality in 12-month (1-year) periods.
 - The partial autocorrelation graph shows an average correlation with 60-month (5-year) periods, which could indicate the presence of a cyclical component.
 
-<img src="Gráficos/plot_autocorrelação_parcial.png">
+<img src="Electricity_consumption/graficos/PACF_Serie_Detrendida.png">
 
 - Fourier series decomposition is performed on the detrended time series.
 - I define the error metrics to be used to quantify the quality of deseasonality.
 - I plot the error metrics by the number of harmonics used in the Fourier series.
 
-<img src="Gráficos/erro_harmonicos.png">
-
+<img src="Electricity_consumption/graficos/Erro_Variancia_Fourier.png">
 
 - This plot indicates an optimal value of 53 harmonics in the Fourier series, explaining a total of 90% of the variance observed in the detrended series. - The seasonality and cyclicality components are reconstructed with the first 53 harmonics.
 
-<img src="Gráficos/reconstrucao_53harmonicos.png">
+<img src="Electricity_consumption/graficos/Serie_Reconstruida_Fourier.png">
  
 - The frequency magnitude spectrum shows the low frequency of 60-period components to justify a possible 60-month cyclicality.
 
-<img src="Gráficos/Espectro_magnitude_fourier.png">
+<img src="Electricity_consumption/graficos/Espectro_Fourier.png">
 
 - The seasonality component is removed from the detrended series, leaving what we will call the irregular component of the time series.
 
-<img src="Gráficos/comp_irre_comp_detrendida.png"> 
+<img src="Electricity_consumption/graficos/Serie_Comp_Irregular.png"> 
     
 3. **Forecast**
 
@@ -169,39 +158,19 @@ Visual analysis of the consumption time series after detrending indicates the pr
 - The forecasts for each method are plotted below:
 
 Naive: Uses the last observed value as the forecast for the next point.
-
-<img src="Gráficos/previsao_naive.png"> 
-
 SeasonalNaive: Forecast equal to the observed value at the same position as the last station.
-
-<img src="Gráficos/previsao_seasonalnaive.png"> 
-
 ETS: Exponential smoothing models that automatically adjust for level, trend, and seasonality.
-
-<img src="Gráficos/previsao_AutoETS.png"> 
-
 ARIMA: Integrated autoregressive moving average model that adjusts for temporal dependence, trend, and seasonal patterns.
-
-<img src="Gráficos/previsao_AutoARIMA.png"> 
-
 Theta: Combines projections of smoothed series with different "angles" to capture trend and level.
-
-<img src="Gráficos/previsao_Theta.png"> 
-
 NBEATS: Deep neural network that learns trend and seasonality patterns directly from the data.
-
-<img src="Gráficos/previsao_NBEATS.png">
-
 NHITS: Evolution of N-BEATS with a hierarchical architecture, learning short- and long-term dependencies.
-
-<img src="Gráficos/previsao_NHITS.png"> 
-
 PatchTST: Transformer-based model that divides the series into "patches" and learns complex temporal patterns.
 
-<img src="Gráficos/previsao_PatchTST.png">
+<img src="Gráficos/Previsoes_Modelos_Estatisticos_Neurais.png">
 
 
 4. **Evalution:**
+
 - The metrics used to evaluate the prediction errors were:
 
 **MAE** (Mean Absolute Error): Measures the average absolute error between predicted and observed values, indicating the average deviation without considering the direction.
@@ -219,15 +188,50 @@ PatchTST: Transformer-based model that divides the series into "patches" and lea
 - Cross-validation generates the forecasts for each method in six windows of the time series.
 - Evaluation metrics are calculated in each of the cross-validation windows, and finally, the simple average of the metrics for each is generated.
 - The average values ​​of the metrics calculated in the cross-validation are used to define the four methods that best suit the data forecast.
-- The average values ​​of the metrics are shown in Figure XX.
-
-<img src="Gráficos/METRICAS_FORECAST.png">
-
 - The four methods that perform best in the metrics are used to generate the final forecasts, which are shown in the figure below.
 
-<img src="Gráficos/previsao_consumo_melhores_metodos.png">
+<img src="Electricity_consumption/graficos/Previsoes_Melhores_Modelos.png">
 
-<img src="Gráficos/previsao_consumo_melhores_metodos_2.png">
+5. **Statical Analysis:**
+
+- Data of free, captive, and total consumption are analyzed along with data on the adoption of daylight saving time.
+- Time series are analyzed to study the influence of the discontinuation of public policy on electricity consumption.
+- A **Diff-to-Diff analysis** is performed for captive, free, and total consumption data.
+- The results are shown below in Figures X-Y-Z.
+
+<img src="Electricity_consumption/graficos/resultado_cativo.png">
+
+- The result for **captive consumers showed a decrease of 13.44% in consumption**.
+
+- The p-value was 0.04, indicating **statistical significance**.
+
+<img src="Electricity_consumption/graficos/resultado_livre.png">
+
+
+- The result for **free consumers was a decrease of 33.04% in consumption**.
+
+- The p-value did not show statistical significance.
+
+<img src="Electricity_consumption/graficos/resultado_consumo_total.png">
+
+- The total result showed a **decrease of 3.46% in electricity consumption in the country**.
+
+- The p-value **did not show statistical significance**.
+
+- Although the results show a decrease after the discontinuation of daylight saving time, the interpretation of this **result should be approached with caution**.
+
+- Some points to consider are:
+
+- The magnitude of the consumption decreases was high (3% in total consumption, 33% in free consumption, and 13% in captive consumption), however, the daylight saving time policy was intended to shift the peak demand, which should not significantly reduce total consumption.
+
+- Following the discontinuation of public policy, a **global event occurred and changed the behavioral patterns of the population and the economy**.
+
+- Temperature has not been analyzed (yet), and this parameter affects electricity consumption.
+
+- Other parameters, such as **economic development, environmental and climatic factors, should be considered**.
+
+- The **results demonstrate the mastery of the technique**.
+
 
 # 4. Data origin
 
