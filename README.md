@@ -53,7 +53,7 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 - The Energy Research Company of the Brazilian government's Ministry of Mines and Energy provides historical data, from 2004 onward, on monthly electricity consumption and the number of consumers at the national, regional, and subsystem levels, segmented by consumer type (captive or free) and by class (residential, industrial, commercial, and others).
 - Historical electricity consumption series are available in .xlsx format, as exemplified in Figure X below.
 
- <img src="Electricity_consumption/graficos/Base_EPE.jpg">
+ <img src="Electricity_consumption/graficos/Base_EPE.png">
 
 - The .xlsx file consists of separate tabs for consumption and the number of captive and free consumers, by region and class, or by federal unit.
 - The data provided is available monthly.
@@ -166,7 +166,7 @@ NBEATS: Deep neural network that learns trend and seasonality patterns directly 
 NHITS: Evolution of N-BEATS with a hierarchical architecture, learning short- and long-term dependencies.
 PatchTST: Transformer-based model that divides the series into "patches" and learns complex temporal patterns.
 
-<img src="Gráficos/Previsoes_Modelos_Estatisticos_Neurais.png">
+<img src="Electricity_consumption/graficos/Previsoes_Modelos_Estatisticos_Neurais.png">
 
 
 4. **Evalution:**
