@@ -53,7 +53,7 @@ The **solution pipeline** is based on the **crisp-dm** framework:
 - The Energy Research Company of the Brazilian government's Ministry of Mines and Energy provides historical data, from 2004 onward, on monthly electricity consumption and the number of consumers at the national, regional, and subsystem levels, segmented by consumer type (captive or free) and by class (residential, industrial, commercial, and others).
 - Historical electricity consumption series are available in .xlsx format, as exemplified in Figure X below.
 
- <img src="Electricity_consumption/graficos/Base_EPE.jpg">
+ <img src="Electricity_consumption/graficos/Base_EPE.png">
 
 - The .xlsx file consists of separate tabs for consumption and the number of captive and free consumers, by region and class, or by federal unit.
 - The data provided is available monthly.
@@ -158,15 +158,22 @@ Visual analysis of the consumption time series after detrending indicates the pr
 - The forecasts for each method are plotted below:
 
 Naive: Uses the last observed value as the forecast for the next point.
+
 SeasonalNaive: Forecast equal to the observed value at the same position as the last station.
+
 ETS: Exponential smoothing models that automatically adjust for level, trend, and seasonality.
+
 ARIMA: Integrated autoregressive moving average model that adjusts for temporal dependence, trend, and seasonal patterns.
+
 Theta: Combines projections of smoothed series with different "angles" to capture trend and level.
+
 NBEATS: Deep neural network that learns trend and seasonality patterns directly from the data.
+
 NHITS: Evolution of N-BEATS with a hierarchical architecture, learning short- and long-term dependencies.
+
 PatchTST: Transformer-based model that divides the series into "patches" and learns complex temporal patterns.
 
-<img src="Gráficos/Previsoes_Modelos_Estatisticos_Neurais.png">
+<img src="Electricity_consumption/graficos/Previsoes_Modelos_Estatisticos_Neurais.png">
 
 
 4. **Evalution:**
@@ -233,6 +240,31 @@ PatchTST: Transformer-based model that divides the series into "patches" and lea
 - The **results demonstrate the mastery of the technique**.
 
 
+6. **PowerBI:**
+
+- A dashboard is created for **data visualization** and **decision-making support**.
+- The **Power BI dashboard** includes the following charts:
+- **Time series of total consumption**, broken down by **customer class**, **contract type**, and **state (UF)**;
+
+<img src="Electricity_consumption/graficos/resultado_consumo_total.png">
+
+
+- Historical series of the number of **consumers** and **average consumption**;
+
+<img src="Electricity_consumption/graficos/PowerBI_1.png">
+
+<img src="Electricity_consumption/graficos/PowerBI_2.png">
+
+- **Choropleth map** for visualizing data by state;
+
+<img src="Electricity_consumption/graficos/PowerBI_3.png">
+
+- **Historical percentage variation** of the values.
+- The PDF attached to the folder shows the created dashboard, and the Power BI model file is also attached.
+
+<img src="Electricity_consumption/graficos/PowerBI_4.png">
+
+
 # 4. Data origin
 
 - The data used are provided by the energy research company, linked to the Brazilian government's Ministry of Mines and Energy. The data are released monthly and separated by consumer type, state, and class. The data are available electronically and can be obtained at (https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/consumo-de-energia-eletrica).
@@ -249,6 +281,7 @@ PatchTST: Transformer-based model that divides the series into "patches" and lea
 - Machine learning algorithms: NBEATS, NHITS, PatchTST.
 - Error metrics: MAE, MSE, MASE, MAPE, sMAPE.
 - Cross-validation
+- PowerBI 
 
 # 6. Contact me
 - Linkedin: https://www.linkedin.com/in/valentelucas
